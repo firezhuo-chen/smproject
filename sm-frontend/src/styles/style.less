@@ -1,0 +1,258 @@
+@import url(var.less);
+//全局样式
+* {
+  margin: 0;
+  padding: 0;
+}
+a{
+  text-decoration: none;
+}
+body {
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  padding-right: 0 !important;
+}
+
+//后台管理顶部菜单相关样式
+.header{
+  width: 100%;
+  height: 90px;
+  padding: 0 20px 0 20px;
+  padding-right: max(20px, calc(20px + env(scrollbar-gutter))); // 考虑滚动条宽度
+  position: fixed;
+  z-index: 11;
+  left: 0;
+  top: 0;
+  background: @head;
+  box-sizing: border-box;
+}
+.header-menu {
+  position: relative;
+  list-style: none;
+  height: @header--menu-height;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.header-title {
+  color: @headtitle;
+  height: 33px;
+  line-height: 33px;
+  font-size: @header--title-size;
+  vertical-align: middle;
+  font-weight: bold;
+  font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+  margin-left: 10px;
+}
+.header-rinfo {
+  margin-right: 40px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  color: #ffffff;
+  a{
+    cursor: pointer;
+    color: #ffffff;
+  }
+  .header-exit {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+
+
+//左侧菜单栏相关样式
+.pdm-sidebar {
+  position: fixed;
+  top: 90px;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+  width: @pdm--sidebar-width;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  &--dark,
+  &--dark-popper {
+    background-color: @sidebar--background-color-dark;
+    .pdm-sidebar__menu.el-menu,
+    > .el-menu--popup {
+      background-color: @sidebar--background-color-dark;
+      .el-menu-item,
+      .el-submenu > .el-submenu__title {
+        color: @sidebar--color-text-dark;
+        &:focus,
+        &:hover {
+          color: mix(#fff, @sidebar--color-text-dark, 50%);
+          background-color: mix(#fff, @sidebar--background-color-dark, 5.5%);
+        }
+      }
+      .el-menu,
+      .el-submenu.is-opened {
+        background-color: mix(#000, @sidebar--background-color-dark, 20%);
+      }
+      .el-menu-item.is-active,
+      .el-submenu.is-active > .el-submenu__title {
+        color: mix(#fff, @sidebar--color-text-dark, 70%);
+      }
+    }
+
+  }
+  &__inner {
+    position: relative;
+    z-index: 1;
+    width: 250px;
+    height: 100%;
+    padding-bottom: 15px;
+    overflow-y: scroll;
+    transition: width 0.3s ease;
+  }
+  &__menu.el-menu {
+    width: @pdm--sidebar-width;
+    border-right: 0;
+    transition: width 0.3s ease;
+  }
+
+  &__menu-icon {
+    width: 24px;
+    margin-right: 5px;
+    text-align: center;
+    font-size: 16px;
+    color: inherit !important;
+  }
+
+}
+
+.el-sub-menu__title,.el-menu-item{
+  font-size: @sidebar--menu--title-size;
+  font-weight: bold;
+}
+
+.pdm-content {
+  position: relative;
+  padding: 15px;
+  background: #f5f5f5;
+  &__wrapper {
+    position: relative;
+    width: auto;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+}
+
+//后台管理页面 底部版权样式
+.layout-footer {
+  position: relative;
+  width: 100%;
+  padding: 7px 0px;
+  display: flex;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 14px;
+  height: 30px;
+  background: #f5f5f5;
+}
+
+.upload-text{
+  text-align: center;;
+}
+
+// ==================== 响应式样式 ====================
+
+// 小屏幕（手机）
+@media screen and (max-width: @screen-sm) {
+  .header {
+    height: @header--menu-height-mobile;
+    padding: 0 12px;
+  }
+  
+  .header-menu {
+    height: @header--menu-height-mobile;
+  }
+  
+  .header-title {
+    font-size: @header--title-size-mobile;
+  }
+  
+  .pdm-sidebar {
+    top: @header--menu-height-mobile;
+  }
+  
+  .pdm-content {
+    padding: 10px;
+    
+    &__wrapper {
+      margin-left: 0;
+    }
+  }
+  
+  // 表格响应式
+  .el-table {
+    font-size: 12px;
+  }
+  
+  // 卡片响应式
+  .el-card {
+    margin-bottom: 10px;
+    
+    .card-header {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 10px;
+      
+      .header-actions {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+    }
+  }
+  
+  // 表单响应式
+  .el-form-item__label {
+    font-size: 13px;
+  }
+  
+  // 对话框响应式
+  .el-dialog {
+    width: 95% !important;
+    margin: 5vh auto !important;
+  }
+  
+  // 页脚
+  .layout-footer {
+    font-size: 12px;
+  }
+}
+
+// 中屏幕（平板/小笔记本）
+@media screen and (min-width: @screen-sm) and (max-width: @screen-lg) {
+  .pdm-content {
+    padding: 12px;
+  }
+  
+  .el-card {
+    .card-header {
+      .header-actions {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+    }
+  }
+}
+
+// 大屏幕优化
+@media screen and (min-width: @screen-xl) {
+  .pdm-content {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px 30px;
+  }
+}
