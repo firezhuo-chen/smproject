@@ -275,7 +275,6 @@ scoop install mysql
 #### 方式三：使用 winget
 
 ```powershell
-# Windows 包管理器
 winget install EclipseAdoptium.Temurin.17.JDK
 winget install OpenJS.NodeJS.LTS
 winget install Apache.Maven
@@ -621,7 +620,7 @@ Copy-Item -Recurse sm-frontend\dist\* C:\sm-system\frontend\
 <service>
   <id>sm-backend</id>
   <name>Student Status Management Backend</name>
-  <description>学籍管理系统后端服务</description>
+  <description>Student Status Management Backend Service</description>
   <executable>java</executable>
   <arguments>-jar sm-backend-0.0.1-SNAPSHOT.jar --file.upload-dir=C:\sm-system\backend\uploads</arguments>
   <workingdirectory>C:\sm-system\backend</workingdirectory>
@@ -818,7 +817,7 @@ Get-Process java
 | 启动 | `sudo systemctl start sm-backend` | `.\sm-backend.exe start` | `sudo launchctl start com.sm.backend` |
 | 停止 | `sudo systemctl stop sm-backend` | `.\sm-backend.exe stop` | `sudo launchctl stop com.sm.backend` |
 | 重启 | `sudo systemctl restart sm-backend` | `.\sm-backend.exe restart` | `sudo launchctl stop com.sm.backend && sudo launchctl start com.sm.backend` |
-| 状态 | `sudo systemctl status sm-backend` | `.\sm-backend.exe status` | `sudo launchctl list \| grep sm.backend` |
+| 状态 | `sudo systemctl status sm-backend` | `.\sm-backend.exe status` | `sudo launchctl list` |
 | 日志 | `tail -f /opt/sm-system/backend/logs/backend.log` | `Get-Content C:\sm-system\backend\logs\backend.log -Tail 100` | `tail -f /opt/sm-system/backend/logs/backend.log` |
 
 ### 9.2 日志轮转
